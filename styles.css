@@ -36,6 +36,7 @@ body {
 .d {
     grid-column: col2-start ;
     grid-row: row2-start ;
+    
       }
 
 .buttons {
@@ -68,3 +69,7 @@ body {
     padding-left: 40px;
     padding-top: 40px;
       }
+.default-btn{
+    margin-left: 75px;
+    border-radius: 30%;
+}

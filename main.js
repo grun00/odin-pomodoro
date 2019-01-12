@@ -4,13 +4,17 @@ Number.prototype.pad = function(size) {
     while (s.length < (size || 2)) {s = "0" + s;}
     return s;
   }
-//functions to increase/decrease the time in the clocks
+
+  //functions to increase/decrease the time in the clocks
 function timeIncrease(element){
     element.textContent = (Number(element.textContent) + 1).pad(2);
+    return element.textContent;
 }
 function timeDecrease(element){
     element.textContent = (Number(element.textContent) - 1).pad(2);
+    return element.textContent;
 }
+
 //starts a countdown on the main clock
 function countDown(){
     if(mainMinutes.textContent == '-1' && SessionRestFlag > 0){
@@ -30,11 +34,13 @@ function countDown(){
     }else{
         timeDecrease(mainSeconds)
 }}
+
 //stops countdown
 function stopFunction(){
     clearInterval(pomodoroSession);
     clearInterval(restSession);
 }
+
 //starting values for the clock
 const minuteTimer = document.querySelector('#minute-timer');
 const minuteRest = document.querySelector('#minute-rest');
@@ -51,30 +57,22 @@ const start = document.querySelector('#start');
 const stop = document.querySelector('#stop');
 const pause = document.querySelector('#pause');
 const reset = document.querySelector('#reset')
+//default buttons
+const defaultTimer = document.querySelector('#default-timer');
+const defaultReset = document.querySelector('#default-reset');
 //session variable
-var pomodoroSession = "global";
+var pomodoroSession;
 var restSession;
-//flag to indicate if it's session or rest timer
+//flag to indicate if it's session or rest timer and if the pause button is in use
 let SessionRestFlag = 1;
 let pauseFlag = 1;
-//arrow keys to increse starting minutes
-upTimer.addEventListener('click', function(){
-    timeIncrease(minuteTimer);
-    mainMinutes.textContent = minuteTimer.textContent;
-});
-upRest.addEventListener('click', function(){
-    timeIncrease(minuteRest);
-});
-//arrow keys to decrease starting minutes
-downTimer.addEventListener('click', function(){
-    timeDecrease(minuteTimer);
-    mainMinutes.textContent = minuteTimer.textContent;
-});
-downRest.addEventListener('click', function(){
-    timeDecrease(minuteRest);
-});
+
 //start, stop, pause & reset buttons
 start.addEventListener('click', function(){
+    document.getElementById('#up-timer').disable = true;
+    document.getElementById('#down-timer').disable = true;
+    document.getElementById('#up-rest').disable = true;
+    document.getElementById('#down-rest').disable = true;
     if(pauseFlag > 0){
       mainSeconds.textContent = 59;
       timeDecrease(mainMinutes);
@@ -106,3 +104,31 @@ reset.addEventListener('click', function(){
       mainSeconds.textContent = '00';
     }
 });
+//default values for time setters;
+defaultTimer.addEventListener('click', function(){
+    minuteTimer.textContent = "25";
+
+});
+defaultReset.addEventListener('click', function(){
+    minuteRest.textContent = "05";
+});
+//arrow keys to increse starting minutes
+upTimer.addEventListener('click', function(){
+    timeIncrease(minuteTimer);
+    mainMinutes.textContent = minuteTimer.textContent;
+});
+upRest.addEventListener('click', function(){
+    timeIncrease(minuteRest);
+});
+//arrow keys to decrease starting minutes
+downTimer.addEventListener('click', function(){
+    if(timeDecrease(minuteTimer) == '00'){
+        minuteTimer.textContent = '01';
+        mainMinutes.textContent = '01';
+    }else{
+        mainMinutes.textContent = minuteTimer.textContent;
+}});
+downRest.addEventListener('click', function(){
+    if(timeDecrease(minuteRest) == '00'){
+        minuteRest.textContent = '01';
+}});
