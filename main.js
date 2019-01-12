@@ -20,13 +20,16 @@ function countDown(){
     if(mainMinutes.textContent == '-1' && SessionRestFlag > 0){
         mainMinutes.textContent = minuteRest.textContent;
         mainSeconds.textContent = '00';
+        playAudio();
         alert("!Starting Rest Time!");
         SessionRestFlag = -SessionRestFlag;
     }else if(mainMinutes.textContent == '-1' && SessionRestFlag < 0){
-        mainMinutes.textContent = '00';
+        mainMinutes.textContent = '25';
         mainSeconds.textContent = '00';
+        playAudio();
         alert("!Rest Over! Restart the clock");
         enable();
+        pauseFlag = 1;
         SessionRestFlag = -SessionRestFlag;
         stopFunction();
     }else if(mainSeconds.textContent == '00'){
@@ -41,6 +44,7 @@ function stopFunction(){
     clearInterval(pomodoroSession);
     clearInterval(restSession);
 }
+
 //disable and enable buttons
 function disable(){
     upTimer.setAttribute("disabled","disabled");
@@ -58,28 +62,43 @@ function enable(){
     defaultTimer.removeAttribute("disabled");
     defaultReset.removeAttribute("disabled");
 }
+
+//play audio functions
+function playAudio(){
+    clickSound.play();
+}
+
 //starting values for the clock
 const minuteTimer = document.querySelector('#minute-timer');
 const minuteRest = document.querySelector('#minute-rest');
+
 //controls for value start for session and rest time
 const upTimer = document.querySelector('#up-timer');
 const downTimer = document.querySelector('#down-timer');
 const upRest = document.querySelector('#up-rest');
 const downRest = document.querySelector('#down-rest');
+
 //clock final value for when the start button is pressed
 const mainMinutes = document.querySelector('#main-minutes');
 const mainSeconds = document.querySelector('#main-seconds');
+
 //start, stop, pause and reset control
 const start = document.querySelector('#start');
 const stop = document.querySelector('#stop');
 const pause = document.querySelector('#pause');
 const reset = document.querySelector('#reset')
+
 //default buttons
 const defaultTimer = document.querySelector('#default-timer');
 const defaultReset = document.querySelector('#default-reset');
+
 //session variable
 var pomodoroSession;
 var restSession;
+
+//audio file
+const clickSound = document.getElementById("myAudio");
+
 //flag to indicate if it's session or rest timer and if the pause button is in use
 let SessionRestFlag = 1;
 let pauseFlag = 1;
@@ -119,6 +138,7 @@ reset.addEventListener('click', function(){
       mainSeconds.textContent = '00';
     }
 });
+
 //default values for time setters;
 defaultTimer.addEventListener('click', function(){
     minuteTimer.textContent = "25";
@@ -127,6 +147,7 @@ defaultTimer.addEventListener('click', function(){
 defaultReset.addEventListener('click', function(){
     minuteRest.textContent = "05";
 });
+
 //arrow keys to increse starting minutes
 upTimer.addEventListener('click', function(){
     timeIncrease(minuteTimer);
@@ -135,6 +156,7 @@ upTimer.addEventListener('click', function(){
 upRest.addEventListener('click', function(){
     timeIncrease(minuteRest);
 });
+
 //arrow keys to decrease starting minutes
 downTimer.addEventListener('click', function(){
     if(timeDecrease(minuteTimer) == '00'){
