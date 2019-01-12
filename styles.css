@@ -1,0 +1,69 @@
+body {
+    margin: 40px;
+  }
+
+.wrapper {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: [col1-start] 250px  [col2-start] 250px  [col3-start] 250px [col3-end];
+    grid-template-rows: [row1-start] auto [row2-start] auto [row2-end];
+    background-color: #fff;
+    color: #444;
+}
+
+.box {
+    background-color: #444;
+    color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 150%;
+}
+
+.a {
+    grid-column: col1-start / col3-start;
+    grid-row: row1-start;
+    text-align: center;
+    }
+.b {
+    grid-column: col3-start ;
+    grid-row: row1-start / row2-end;
+
+      }
+.c {
+    grid-column: col1-start;
+    grid-row: row2-start ;
+      }
+.d {
+    grid-column: col2-start ;
+    grid-row: row2-start ;
+      }
+
+.buttons {
+    border: none;
+    color: white;
+    padding: 15px 36px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+      }
+.upper{
+    padding: 1rem;
+    margin-left: 5px;
+    margin-right: 5px;
+      }
+.timer {
+    text-align: center;
+    margin: 0;
+      }
+.numbers{
+    text-align: center;
+    display: inline-block;
+    
+      }
+.clock-body{
+    position: relative;
+    font-size: 50px;
+    padding-left: 40px;
+    padding-top: 40px;
+      }

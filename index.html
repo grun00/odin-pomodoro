@@ -4,9 +4,81 @@
     <meta charset="utf-8">
     <title>The Pomodoro Clock</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   </head>
   <body>
-    <h1>Pomodoro Clock Project</h1>
+    <div class="wrapper">
+        <div class="box a">
+                <div class="buttons">
+                    <button class="upper"><i class="fas fa-play"> Start</i></button>
+                    <button class="upper"><i class="fas fa-stop"> Stop</i></button>
+                    <button class="upper"><i class="fas fa-pause"> Pause</i></button>
+                    <button class="upper"><i class="fas fa-sync-alt"> Reset</i></button>
+                </div>
+        </div>
+        <div class="box b">
+                <div class="clock-body numbers">
+                <!--minutes-->
+                <div class="numbers">
+                    <p class="minutes"></p>
+                    <p class="placeholder">00</p>
+                </div>
+                <div class="colon numbers">
+                    <p>:</p>
+                </div>
+                <!--seconds-->
+                <div class="numbers">
+                        <p class="minutes"></p>
+                        <p class="placeholder">00</p>
+                </div>
+
+
+                </div>
+        </div>
+        <div class="box c">
+            <div class="timer start">
+                <p class="timer">Session</p>
+                <i class="fas fa-arrow-up"></i>
+                <div class="numbers">
+                    <p class="minutes"></p>
+                    <p class="placeholder">00</p>
+                </div>
+                <div class="colon numbers">
+                    <p>:</p>
+                </div>
+                <!--seconds-->
+                <div class="numbers">
+                    <p class="minutes"></p>
+                    <p class="placeholder">00</p>
+                </div>
+                <i class="fas fa-arrow-down"></i>
+            </div>
+        </div>
+        <div class="box d">
+            <div class="timer rest">
+                <p class="timer">Rest</p>
+                <i class="fas fa-arrow-up"></i>
+                <div class="numbers">
+                        <p class="minutes"></p>
+                        <p class="placeholder">00</p>
+                    </div>
+                    <div class="colon numbers">
+                        <p>:</p>
+                    </div>
+                    <!--seconds-->
+                    <div class="numbers">
+                            <p class="minutes"></p>
+                            <p class="placeholder">00</p>
+                    </div>
+                <i class="fas fa-arrow-down"></i>
+            </div>
+        </div>
+    </div>
+
     <script src="main.js"></script>
   </body>
 </html>
+
+<div class="clock">
+
+    </div>
