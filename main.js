@@ -13,16 +13,16 @@ function timeDecrease(element){
 }
 //starts a countdown on the main clock
 function countDown(){
-    if(mainMinutes.textContent == '-1' && flag > 0){
+    if(mainMinutes.textContent == '-1' && SessionRestFlag > 0){
         mainMinutes.textContent = minuteRest.textContent;
         mainSeconds.textContent = '00';
         alert("!Starting Rest Time!");
-        flag = -flag;
-    }else if(mainMinutes.textContent == '-1' && flag < 0){
+        SessionRestFlag = -SessionRestFlag;
+    }else if(mainMinutes.textContent == '-1' && SessionRestFlag < 0){
         mainMinutes.textContent = '00';
         mainSeconds.textContent = '00';
         alert("!Rest Over! Restart the clock");
-        flag = -flag;
+        SessionRestFlag = -SessionRestFlag;
         stopFunction();
     }else if(mainSeconds.textContent == '00'){
         mainSeconds.textContent = '59';
@@ -35,8 +35,6 @@ function stopFunction(){
     clearInterval(pomodoroSession);
     clearInterval(restSession);
 }
-
-
 //starting values for the clock
 const minuteTimer = document.querySelector('#minute-timer');
 const minuteRest = document.querySelector('#minute-rest');
@@ -57,7 +55,8 @@ const reset = document.querySelector('#reset')
 var pomodoroSession = "global";
 var restSession;
 //flag to indicate if it's session or rest timer
-let flag = 1;
+let SessionRestFlag = 1;
+let pauseFlag = 1;
 //arrow keys to increse starting minutes
 upTimer.addEventListener('click', function(){
     timeIncrease(minuteTimer);
@@ -74,14 +73,36 @@ downTimer.addEventListener('click', function(){
 downRest.addEventListener('click', function(){
     timeDecrease(minuteRest);
 });
-//start button
+//start, stop, pause & reset buttons
 start.addEventListener('click', function(){
-    mainSeconds.textContent = 59;
-    timeDecrease(mainMinutes);
-    if(flag > 0){
+    if(pauseFlag > 0){
+      mainSeconds.textContent = 59;
+      timeDecrease(mainMinutes);
+    }else{
+      pauseFlag = -pauseFlag;
+    }
+    if(SessionRestFlag > 0){
         pomodoroSession = setInterval(countDown, 1000);
     }else {
         mainMinutes.textContent = minuteRest.textContent;
         restSession = setInterval(countDown,1000);
+    }
+});
+stop.addEventListener('click', function(){
+    mainMinutes.textContent = '25';
+    mainSeconds.textContent = '00';
+    stopFunction();
+});
+pause.addEventListener('click', function(){
+    stopFunction();
+    pauseFlag = -pauseFlag;
+});
+reset.addEventListener('click', function(){
+    if(SessionRestFlag > 0){
+      mainMinutes.textContent = minuteTimer.textContent;
+      mainSeconds.textContent = '00';
+    }else{
+      mainMinutes.textContent = minuteRest.textContent;
+      mainSeconds.textContent = '00';
     }
 });
