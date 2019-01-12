@@ -26,6 +26,7 @@ function countDown(){
         mainMinutes.textContent = '00';
         mainSeconds.textContent = '00';
         alert("!Rest Over! Restart the clock");
+        enable();
         SessionRestFlag = -SessionRestFlag;
         stopFunction();
     }else if(mainSeconds.textContent == '00'){
@@ -40,7 +41,23 @@ function stopFunction(){
     clearInterval(pomodoroSession);
     clearInterval(restSession);
 }
-
+//disable and enable buttons
+function disable(){
+    upTimer.setAttribute("disabled","disabled");
+    downTimer.setAttribute("disabled","disabled");
+    upRest.setAttribute("disabled","disabled");
+    downRest.setAttribute("disabled","disabled");
+    defaultTimer.setAttribute("disabled","disabled");
+    defaultReset.setAttribute("disabled","disabled");
+}
+function enable(){
+    upTimer.removeAttribute("disabled");
+    downTimer.removeAttribute("disabled");
+    upRest.removeAttribute("disabled");
+    downRest.removeAttribute("disabled");
+    defaultTimer.removeAttribute("disabled");
+    defaultReset.removeAttribute("disabled");
+}
 //starting values for the clock
 const minuteTimer = document.querySelector('#minute-timer');
 const minuteRest = document.querySelector('#minute-rest');
@@ -69,10 +86,7 @@ let pauseFlag = 1;
 
 //start, stop, pause & reset buttons
 start.addEventListener('click', function(){
-    document.getElementById('#up-timer').disable = true;
-    document.getElementById('#down-timer').disable = true;
-    document.getElementById('#up-rest').disable = true;
-    document.getElementById('#down-rest').disable = true;
+    disable();
     if(pauseFlag > 0){
       mainSeconds.textContent = 59;
       timeDecrease(mainMinutes);
@@ -90,6 +104,7 @@ stop.addEventListener('click', function(){
     mainMinutes.textContent = '25';
     mainSeconds.textContent = '00';
     stopFunction();
+    enable();
 });
 pause.addEventListener('click', function(){
     stopFunction();
