@@ -10,26 +10,24 @@
     <div class="wrapper">
         <div class="box a">
                 <div class="buttons">
-                    <button class="upper"><i class="fas fa-play"> Start</i></button>
-                    <button class="upper"><i class="fas fa-stop"> Stop</i></button>
-                    <button class="upper"><i class="fas fa-pause"> Pause</i></button>
-                    <button class="upper"><i class="fas fa-sync-alt"> Reset</i></button>
+                    <button id="start" class="upper"><i class="fas fa-play"> Start</i></button>
+                    <button id="stop" class="upper"><i class="fas fa-stop"> Stop</i></button>
+                    <button id="pause"class="upper"><i class="fas fa-pause"> Pause</i></button>
+                    <button id="reset" class="upper"><i class="fas fa-sync-alt"> Reset</i></button>
                 </div>
         </div>
         <div class="box b">
                 <div class="clock-body numbers">
                 <!--minutes-->
                 <div class="numbers">
-                    <p class="minutes"></p>
-                    <p class="placeholder">00</p>
+                    <p id="main-minutes">25</p>
                 </div>
                 <div class="colon numbers">
                     <p>:</p>
                 </div>
                 <!--seconds-->
                 <div class="numbers">
-                        <p class="minutes"></p>
-                        <p class="placeholder">00</p>
+                        <p id="main-seconds">00</p>
                 </div>
 
 
@@ -38,44 +36,43 @@
         <div class="box c">
             <div class="timer start">
                 <p class="timer">Session</p>
-                <i class="fas fa-arrow-up"></i>
+                <i id="up-timer" class="fas fa-arrow-up"></i>
                 <div class="numbers">
-                    <p class="minutes"></p>
-                    <p class="placeholder">00</p>
+                    <p id="minute-timer" class="minutes">25</p>
                 </div>
                 <div class="colon numbers">
                     <p>:</p>
                 </div>
                 <!--seconds-->
                 <div class="numbers">
-                    <p class="minutes"></p>
-                    <p class="placeholder">00</p>
+                    <p id="second-timer" class="minutes">00</p>
                 </div>
-                <i class="fas fa-arrow-down"></i>
+                <i id="down-timer" class="fas fa-arrow-down"></i>
             </div>
         </div>
         <div class="box d">
             <div class="timer rest">
                 <p class="timer">Rest</p>
-                <i class="fas fa-arrow-up"></i>
+                <i id="up-rest" class="fas fa-arrow-up"></i>
                 <div class="numbers">
-                        <p class="minutes"></p>
-                        <p class="placeholder">00</p>
+                        <p id="minute-rest" class="minutes">05</p>
                     </div>
                     <div class="colon numbers">
                         <p>:</p>
                     </div>
                     <!--seconds-->
                     <div class="numbers">
-                            <p class="minutes"></p>
-                            <p class="placeholder">00</p>
+                            <p id ="second-rest" class="seconds">00</p>
                     </div>
-                <i class="fas fa-arrow-down"></i>
+                <i id="down-rest" class="fas fa-arrow-down"></i>
             </div>
         </div>
     </div>
-
-    <script src="main.js"></script>
+    <button onclick="setTimeout(myFunction, 3000)">Try it</button>
+    <script src="main.js">
+        function myFunction() {
+        alert('Hello');
+    </script>
   </body>
 </html>
 

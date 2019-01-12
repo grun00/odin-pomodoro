@@ -40,7 +40,6 @@ body {
 
 .buttons {
     border: none;
-    color: white;
     padding: 15px 36px;
     text-align: center;
     text-decoration: none;
@@ -51,6 +50,8 @@ body {
     padding: 1rem;
     margin-left: 5px;
     margin-right: 5px;
+    border-radius: 30%;
+    
       }
 .timer {
     text-align: center;
