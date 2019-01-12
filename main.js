@@ -13,18 +13,27 @@ function timeDecrease(element){
 }
 //starts a countdown on the main clock
 function countDown(){
-    if(mainMinutes.textContent == '-1'){
-        (flag > 0)? alert(flag) : alert(flag);
+    if(mainMinutes.textContent == '-1' && flag > 0){
+        mainMinutes.textContent = minuteRest.textContent;
+        mainSeconds.textContent = '00';
+        alert("!Starting Rest Time!");
+        flag = -flag;
+    }else if(mainMinutes.textContent == '-1' && flag < 0){
         mainMinutes.textContent = '00';
         mainSeconds.textContent = '00';
-        flag = (-1)*flag;
-        clearInterval(pomodoroSession);
-        clearInterval(restSession);
+        alert("!Rest Over! Restart the clock");
+        flag = -flag;
+        stopFunction();
     }else if(mainSeconds.textContent == '00'){
         mainSeconds.textContent = '59';
         timeDecrease(mainMinutes);
     }else{
-        timeDecrease(mainSeconds);}
+        timeDecrease(mainSeconds)
+}}
+//stops countdown
+function stopFunction(){
+    clearInterval(pomodoroSession);
+    clearInterval(restSession);
 }
 
 
@@ -44,6 +53,9 @@ const start = document.querySelector('#start');
 const stop = document.querySelector('#stop');
 const pause = document.querySelector('#pause');
 const reset = document.querySelector('#reset')
+//session variable
+var pomodoroSession = "global";
+var restSession;
 //flag to indicate if it's session or rest timer
 let flag = 1;
 //arrow keys to increse starting minutes
@@ -67,9 +79,9 @@ start.addEventListener('click', function(){
     mainSeconds.textContent = 59;
     timeDecrease(mainMinutes);
     if(flag > 0){
-        let pomodoroSession = setInterval(countDown, 1000);
+        pomodoroSession = setInterval(countDown, 1000);
     }else {
         mainMinutes.textContent = minuteRest.textContent;
-        let restSession = setInterval(countDown,1000);
+        restSession = setInterval(countDown,1000);
     }
-})
+});
