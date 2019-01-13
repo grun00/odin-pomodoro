@@ -73,3 +73,7 @@ body {
     margin-left: 75px;
     border-radius: 30%;
 }
+#status{
+    text-align: center;
+    height: 22px;
+}

@@ -21,13 +21,13 @@ function countDown(){
         mainMinutes.textContent = minuteRest.textContent;
         mainSeconds.textContent = '00';
         playAudio();
-        alert("!Starting Rest Time!");
+        sessionStatus.textContent = "Rest!"
         SessionRestFlag = -SessionRestFlag;
     }else if(mainMinutes.textContent == '-1' && SessionRestFlag < 0){
         mainMinutes.textContent = '25';
         mainSeconds.textContent = '00';
         playAudio();
-        alert("!Rest Over! Restart the clock");
+        sessionStatus.textContent = "Stopped";
         enable();
         pauseFlag = 1;
         SessionRestFlag = -SessionRestFlag;
@@ -53,6 +53,7 @@ function disable(){
     downRest.setAttribute("disabled","disabled");
     defaultTimer.setAttribute("disabled","disabled");
     defaultReset.setAttribute("disabled","disabled");
+    start.setAttribute("disabled","disabled");
 }
 function enable(){
     upTimer.removeAttribute("disabled");
@@ -61,6 +62,7 @@ function enable(){
     downRest.removeAttribute("disabled");
     defaultTimer.removeAttribute("disabled");
     defaultReset.removeAttribute("disabled");
+    start.removeAttribute("disabled");
 }
 
 //play audio functions
@@ -103,9 +105,13 @@ const clickSound = document.getElementById("myAudio");
 let SessionRestFlag = 1;
 let pauseFlag = 1;
 
+//status display
+let sessionStatus = document.querySelector("#status");
+
 //start, stop, pause & reset buttons
 start.addEventListener('click', function(){
     disable();
+    sessionStatus.textContent = "Running!"
     if(pauseFlag > 0){
       mainSeconds.textContent = 59;
       timeDecrease(mainMinutes);
@@ -124,10 +130,13 @@ stop.addEventListener('click', function(){
     mainSeconds.textContent = '00';
     stopFunction();
     enable();
+    sessionStatus.textContent = "Stopped";
 });
 pause.addEventListener('click', function(){
     stopFunction();
+    sessionStatus.textContent = "Paused!"
     pauseFlag = -pauseFlag;
+    start.removeAttribute("disabled");
 });
 reset.addEventListener('click', function(){
     if(SessionRestFlag > 0){
